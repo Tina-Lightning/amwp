@@ -29,7 +29,11 @@
   </div>
   <div class="field">
     <%= f.label :rating %><br>
-    <%= f.text_field :rating %>
+    <%= f.select(:rating, options_for_select([['G', 'G'], ['PG', 'PG'], ['PG-13', 'PG-13'], ['R', 'R'], ['NC-17', 'NC-17'], ['NR', 'NR']])) %>
+  </div>
+   <div class="field">
+    <%= f.label :year %><br>
+    <%= f.number_field :year %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -5,6 +5,11 @@ class MoviesController < ApplicationController
   # GET /movies.json
   def index
     @movies = Movie.all
+
+    respond_to do |format|
+      format.html
+      format.csv { render text: @movies.to_csv }
+    end
   end
 
   # GET /movies/1
@@ -61,6 +66,11 @@ class MoviesController < ApplicationController
     end
   end
 
+  def import
+    Movie.import(params[:file])
+    redirect_to movies_path, notice: "Movies added successfully"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_movie
@@ -69,6 +79,6 @@ class MoviesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
-      params.require(:movie).permit(:title, :description, :movie_length, :director, :rating)
+      params.require(:movie).permit(:title, :description, :movie_length, :director, :rating, :year)
     end
 end

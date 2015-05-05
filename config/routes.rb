@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :movies
+  
+  resources :movies do
+    collection { post :import }
+  end
+
   devise_for :users
   root "pages#home"
 

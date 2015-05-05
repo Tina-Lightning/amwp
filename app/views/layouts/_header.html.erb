@@ -15,6 +15,7 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Movies", movies_path %></li>
         <li><%= link_to "About", "#" %></li> 
         <% if current_user %>
           <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
