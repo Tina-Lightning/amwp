@@ -37,6 +37,10 @@
 <h2>Comments</h2>
 <% @movie.comments.each do |comment| %> 
   <p>
+    <b>From:</b>
+    <%= comment.user.name %>
+  </p>
+  <p>
     <b>Comment:</b>
     <%= comment.comment %>
   </p>
