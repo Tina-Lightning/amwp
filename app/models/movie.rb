@@ -17,4 +17,6 @@ class Movie < ActiveRecord::Base
 			end
 		end
 	end
+
+	has_many :comments, dependent: :destroy
 end

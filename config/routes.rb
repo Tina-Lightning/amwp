@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
+  
   resources :movies do
     collection { post :import }
+    resources :comments, except: [:index], controller: 'movies/comments'
   end
 
   devise_for :users
