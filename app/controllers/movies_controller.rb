@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  before_action :set_movie, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 
   # GET /movies
   # GET /movies.json
@@ -66,6 +66,16 @@ class MoviesController < ApplicationController
       format.html { redirect_to movies_url, notice: 'Movie was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def upvote
+    @movie.upvote_by current_user
+    redirect_to :back
+  end
+
+  def downvote
+    @movie.downvote_by current_user
+    redirect_to :back
   end
 
   def import

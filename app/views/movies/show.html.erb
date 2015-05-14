@@ -3,7 +3,14 @@
 <p>
   <%= image_tag @movie.image.url(:medium) %>
 </p>
-
+<p>
+  <%= @movie.get_upvotes.size %> Likes
+  <%= @movie.get_downvotes.size %> Dislikes
+</p>
+<p>
+  <%= link_to "Like", like_movie_path(@movie), method: :get %> 
+  <%= link_to "Dislike", dislike_movie_path(@movie), method: :get %>
+</p>
 <p>
   <strong>Title:</strong>
   <%= @movie.title %>

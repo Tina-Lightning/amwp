@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   
   
   resources :movies do
+    member do
+      get "like", to: "movies#upvote"
+      get "dislike", to: "movies#downvote"
+    end
     collection { post :import }
     resources :comments, except: [:index], controller: 'movies/comments'
   end

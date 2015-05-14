@@ -28,6 +28,7 @@
         <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
         <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= movie.comments.count %> Comments</td>
+        <td><%= movie.get_likes.size %> Likes</td>
       </tr>
     <% end %>
   </tbody>
