@@ -1,4 +1,4 @@
-<%= form_for [@movie, @comment] do |f| %>
+<%= form_for([@movie, @movie.comments.build]) do |f| %>
 
   <div class="field">
     <%= f.label :comment %><br>

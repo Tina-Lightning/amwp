@@ -26,17 +26,14 @@ class Movies::CommentsController < ApplicationController
   # POST /comments.json
   def create
     @movie = Movie.find(params[:movie_id])
-    @comment = current_user.comments.build(comment_params)
-    @comment.movie = @movie
+    @comment = Comment.create(params[:comment].permit(:comment))
+    @comment.user_id = current_user.id
+    @comment.movie_id = @movie.id
 
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @movie, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @movie }
-      else
-        format.html { render :new }
-        format.json { render json: @movie.errors, status: :unprocessable_entity }
-      end
+    if @comment.save 
+      redirect_to movie_path(@movie)
+    else
+      render 'new'
     end
   end
 

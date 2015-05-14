@@ -35,6 +35,7 @@
 </p>
 
 <h2>Comments</h2>
+<h5><%= comment_count= pluralize(@movie.comments.count, "Comment") %></h5>
 <% @movie.comments.each do |comment| %> 
   <p>
     <b>From:</b>
