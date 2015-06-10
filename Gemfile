@@ -14,6 +14,8 @@ gem 'devise'
 gem 'paperclip', '~> 4.2'
 gem 'aws-sdk', '< 2.0'
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'carrierwave'
+gem 'rmagick', '~> 2.15.2'
 
 group :production do
      gem 'pg'

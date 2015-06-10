@@ -1,45 +1,66 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-sm-6 center">
+    <%= image_tag @movie.image_url.to_s %>
+    
+  </div>
+  <div class="col-sm-6">
+    <table class="table table-hover table-responsive">
+      <thead>
+        <h5><%= @movie.title %></h5>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Description:</td>
+          <td><%= @movie.description %></td> 
+        </tr>
+        <tr>
+          <td>Movie Length:</td>
+          <td><%= @movie.movie_length %></td> 
+        </tr>
+        <tr>
+          <td>Director:</td>
+          <td><%= @movie.director %></td> 
+        </tr>
+        <tr>
+          <td>Rating:</td>
+          <td><%= @movie.rating %></td> 
+        </tr>
+        <tr>
+          <td>Year:</td>
+          <td><%= @movie.year %></td> 
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<p>
-  <%= image_tag @movie.image.url(:medium) %>
-</p>
-<p>
-  <%= @movie.get_upvotes.size %> Likes
-  <%= @movie.get_downvotes.size %> Dislikes
-</p>
-<p>
-  <%= link_to "Like", like_movie_path(@movie), method: :get %> 
-  <%= link_to "Dislike", dislike_movie_path(@movie), method: :get %>
-</p>
-<p>
-  <strong>Title:</strong>
-  <%= @movie.title %>
-</p>
+<h3 class="center">Can I watch this movie with my parents?</h3>
+<div class="well">
+  <div class="row">
+      <div class="col-sm-6 center">
+        <%= @movie.get_upvotes.size %> Yeah, go for it. 
+      </div>
+      <div class="col-sm-6 center">
+        <%= @movie.get_downvotes.size %> No! It's too <em>awkward!</em>
+      </div>
+    </div>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @movie.description %>
-</p>
-
-<p>
-  <strong>Movie length:</strong>
-  <%= @movie.movie_length %>
-</p>
-
-<p>
-  <strong>Director:</strong>
-  <%= @movie.director %>
-</p>
-
-<p>
-  <strong>Rating:</strong>
-  <%= @movie.rating %>
-</p>
-
-<p>
-  <strong>Year:</strong>
-  <%= @movie.year %>
-</p>
+<h3 class="center">What do you think?</h3>
+<div class="well">
+  <div class="row">
+      <div class="col-sm-6 center">
+        <%= link_to like_movie_path(@movie), method: :get do %>
+          <i class="fa fa-thumbs-o-up"></i>&nbsp; It's cool.
+        <% end %>
+      </div>
+      <div class="col-sm-6 center">
+        <%= link_to dislike_movie_path(@movie), method: :get do %>
+          <i class="fa fa-thumbs-o-down"></i>&nbsp; It's awkward. 
+        <% end %>
+      </div>
+    </div>
+</div>
 
 <h2>Comments</h2>
 <h5><%= comment_count= pluralize(@movie.comments.count, "Comment") %></h5>
@@ -58,6 +79,8 @@
 <%= link_to "Add Comment", new_movie_comment_path(@movie), class: 'pull-right' %>
 
 <p>
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
-<%= link_to 'Back', movies_path %>
+  <% if @movie.user == current_user %>
+    <%= link_to 'Edit', edit_movie_path(@movie) %>
+  <% end %>  &nbsp;
+  <%= link_to 'Back', movies_path %>
 </p>
