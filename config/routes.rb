@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   
   
   resources :movies do
+    collection do
+      get 'search'
+    end
+
     member do
       get "like", to: "movies#upvote"
       get "dislike", to: "movies#downvote"

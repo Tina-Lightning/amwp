@@ -3,8 +3,14 @@ class MoviesController < ApplicationController
   before_action :correct_user, only: [:edit, :update, ]
   before_action :authenticate_user!, except: [:index, :show]
 
-  # GET /movies
-  # GET /movies.json
+  def search
+    if params[:search].present?
+      @movies = Movie.search(params[:search])
+    else
+      @movies = Movie.all #Displays all movies in the database
+    end
+  end
+
   def index
     @movies = Movie.all
 

@@ -17,6 +17,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'carrierwave'
 gem 'rmagick', '~> 2.15.2'
 gem 'fog', '~> 1.31.0'
+gem 'searchkick', '~> 0.8.7'
 
 group :production do
      gem 'pg'
