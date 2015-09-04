@@ -46,14 +46,12 @@
   <div class="row">
       <div class="col-sm-6 center mid-line">
         <div class="percentage">
-        <%= "#{(@movie.get_upvotes.size/(@movie.get_upvotes.size+@movie.get_downvotes.size))*100}" %>%
         </div>
         <p>Said this movie was an awkward-watch</p>
         <p><%= @movie.get_upvotes.size %> Said awkward</em></p>
       </div>
       <div class="col-sm-6 center">
         <div class="percentage">
-        <%= "#{(@movie.get_downvotes.size/(@movie.get_upvotes.size+@movie.get_downvotes.size))*100}" if @movie.get_downvotes.count > 0 %>%
         </div>
         <p>Said this movie was totally fine</p>
         <p><%= @movie.get_downvotes.size %> Said not awkward</em></p>
