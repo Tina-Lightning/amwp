@@ -1,7 +1,10 @@
-<div class="jumbotron center">
-     <h2>Welcome to my Awkward Movies with Parents!</h2>
-     <p>
-       <%= link_to "Log in", "#", class: "btn btn-default btn-lg" %>
-       <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
-  </p>    
+<div class="center">
+    <h2>WELCOME TO <br/><strong>AWKWARDMOVIESWITHPARENTS.COM</strong></h2>
+    <%= image_tag("AMWP-logo.png", class: "home-img", :alt => "AMWP logo") %>
+    <div class="home-question">
+    	<h2>Should I watch</h2>
+    	<%= text_field_tag :search, params[:search], class: "form-control home-search" %>
+    	<h2>with my parents?</h2>
+    	<%= submit_tag "Search", name: nil, class: "btn btn-default home-search-btn" %>
+    </div>
 </div>

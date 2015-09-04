@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   before_action :correct_user, only: [:edit, :update, ]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :upvote, :downvote]
 
   def search
     if params[:search].present?
@@ -25,6 +25,10 @@ class MoviesController < ApplicationController
   def show
     @movies = Movie.find(params[:id])
     @comments = @movie.comments
+  end
+
+  def rating(guide)
+    guide.votes.count > 0 ? (guide.upvotes.count / guide.votes.count) : 0
   end
 
   # GET /movies/new

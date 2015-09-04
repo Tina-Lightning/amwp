@@ -4,88 +4,96 @@
     
   </div>
   <div class="col-sm-6">
-    <table class="table table-hover table-responsive">
+    <table class="table table-responsive">
       <thead>
         <h5><%= @movie.title %></h5>
       </thead>
       <tbody>
         <tr>
-          <td>Description:</td>
+          <td><strong>Description:</strong></td>
           <td><%= @movie.description %></td> 
         </tr>
         <tr>
-          <td>Movie Length:</td>
+          <td><strong>Movie Length:</strong></td>
           <td><%= @movie.movie_length %></td> 
         </tr>
         <tr>
-          <td>Director:</td>
+          <td><strong>Director:</strong></td>
           <td><%= @movie.director %></td> 
         </tr>
         <tr>
-          <td>Rating:</td>
+          <td><strong>Rating:</strong></td>
           <td><%= @movie.rating %></td> 
         </tr>
         <tr>
-          <td>Year:</td>
+          <td><strong>Year:</strong></td>
           <td><%= @movie.year %></td> 
         </tr>
       </tbody>
     </table>
+    <p>
+      <% if @movie.user == current_user %>
+        <%= link_to 'Edit Movie', edit_movie_path(@movie) %> | 
+        <%= link_to 'Delete Movie', @movie, method: :delete, confirm: "Are you sure you want to delete this movie?" %>
+      <% end %>
+    </p>
   </div>
 </div>
 
-<h3 class="center">Can I watch this movie with my parents?</h3>
-<div class="well">
-  <div class="row">
-      <div class="col-sm-6 center">
-        <%= @movie.get_upvotes.size %> Yeah, go for it. 
-      </div>
-      <div class="col-sm-6 center">
-        <%= @movie.get_downvotes.size %> No! It's too <em>awkward!</em>
-      </div>
-    </div>
-</div>
+<hr />
 
-<h3 class="center">What do you think?</h3>
-<div class="well">
+<h3 class="center">AWKWARDMETER</h3>
   <div class="row">
+      <div class="col-sm-6 center mid-line">
+        <div class="percentage">
+        <%= "#{(@movie.get_upvotes.size/(@movie.get_upvotes.size+@movie.get_downvotes.size))*100}" %>%
+        </div>
+        <p>Said this movie was an awkward-watch</p>
+        <p><%= @movie.get_upvotes.size %> Said awkward</em></p>
+      </div>
       <div class="col-sm-6 center">
+        <div class="percentage">
+        <%= "#{(@movie.get_downvotes.size/(@movie.get_upvotes.size+@movie.get_downvotes.size))*100}" if @movie.get_downvotes.count > 0 %>%
+        </div>
+        <p>Said this movie was totally fine</p>
+        <p><%= @movie.get_downvotes.size %> Said not awkward</em></p>
+      </div>
+  </div>
+<hr />
+
+<h3 class="center">YOUR TURN</h3>
+<p class="center">Would you watch this movie with your parents?</p>
+  <div class="row">
+      <div class="col-sm-6 center mid-line">
         <%= link_to like_movie_path(@movie), method: :get do %>
-          <i class="fa fa-thumbs-o-up"></i>&nbsp; It's cool.
+          <%= image_tag("awkward-face.png", class: "home-img", :alt => "awkward-face") %>
+          <p>Nope, too awkward</p>
         <% end %>
       </div>
       <div class="col-sm-6 center">
         <%= link_to dislike_movie_path(@movie), method: :get do %>
-          <i class="fa fa-thumbs-o-down"></i>&nbsp; It's awkward. 
+          <%= image_tag("happy-face.png", class: "home-img", :alt => "awkward-face") %>
+          <p>Yep, it's totally fine</p>
         <% end %>
       </div>
     </div>
-</div>
 
-<h2>Comments</h2>
-<h5><%= comment_count= pluralize(@movie.comments.count, "Comment") %></h5>
-<%= link_to "Add Comment", new_movie_comment_path(@movie), class: 'pull-right' %>
+<hr />
 
-        <% if @comments.blank? %>
-          <h3>No comments just yet, would you like to add the first?</h3>
-          <%= link_to "Write Comment", new_movie_comment_path(@movie), class: "btn btn-danger" %>
-        <% else %>
-          <% @movie.comments.each do |comment| %> 
-            <p>
-              <b>From:</b>
-              <%= comment.user.name %>
-            </p>
-            <p>
-              <b>Comment:</b>
-              <%= comment.comment %>
-            </p>
-            <%= link_to "Delete", [@movie, comment], method: :delete, confirm: "Are you sure you want to delete this product?" %>
-          <% end %>
+<h3 class="center">COMMENTS</h3>
+  <div class="comments">
+  <% if @comments.blank? %>
+    <h3>No comments just yet, would you like to add the first?</h3>
+    <%= link_to "Write Comment", new_movie_comment_path(@movie), class: "btn btn-danger" %>
+  <% else %>
+    <% @movie.comments.each do |comment| %> 
+      <p>"<%= comment.comment %>"</p>
+      <p class="commenter">- <%= comment.user.name %></p>
+        <% if @movie.user == current_user %>
+          <%= link_to "Delete", [@movie, comment], method: :delete, confirm: "Are you sure you want to delete this comment?" %>
         <% end %>
-
-<p>
-  <% if @movie.user == current_user %>
-    <%= link_to 'Edit', edit_movie_path(@movie) %>
-  <% end %>  &nbsp;
-  <%= link_to 'Back', movies_path %>
-</p>
+      <hr />
+    <% end %>
+  <% end %>
+  <%= link_to "Add Comment", new_movie_comment_path(@movie), class: 'pull-right' %>
+</div>

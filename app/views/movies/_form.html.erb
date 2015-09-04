@@ -11,41 +11,47 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: "form-control amwp-field-area" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class: "form-control amwp-field-area" %>
   </div>
-  <div class="field">
-    <%= f.label :movie_length %><br>
-    <%= f.text_field :movie_length %>
+  <div class="form-group">
+    <%= f.label :movie_length %><br> 
+    <%= f.text_field :movie_length, class: "form-control amwp-field-area" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :director %><br>
-    <%= f.text_field :director %>
+    <%= f.text_field :director, class: "form-control amwp-field-area" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :rating %><br>
-    <%= f.select(:rating, options_for_select([['G', 'G'], ['PG', 'PG'], ['PG-13', 'PG-13'], ['R', 'R'], ['NC-17', 'NC-17'], ['NR', 'NR']])) %>
+    <%= f.select(:rating, options_for_select([['G', 'G'], ['PG', 'PG'], ['PG-13', 'PG-13'], ['R', 'R'], ['Unrated', 'Unrated'], ['NC-17', 'NC-17'], ['X', 'X']]), { class: "form-control" }) %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :year %><br>
-    <%= f.number_field :year %>
+    <%= f.number_field :year, class: "form-control amwp-field-area" %>
   </div>
-  <div class="field">
+
+  <div class="form-group">
     <%= f.label :image %><br>
     <%= f.file_field :image %>
   </div>
-  <div class="field">
+
+  <div class="form-group">
     <%= f.label :remote_image_url, "or image URL" %><br>
-    <%= f.text_field :remote_image_url %>
+    <%= f.text_field :remote_image_url , class: "form-control amwp-field-area" %>
   </div>
 
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions form-group">
+    <%= f.submit class: "btn btn-primary" %>
   </div>
+
 <% end %>
+
+
+
+
