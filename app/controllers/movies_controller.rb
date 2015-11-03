@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
-  before_action :correct_user, only: [:edit, :update, ]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show, :upvote, :downvote, :search]
 
   def search
