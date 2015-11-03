@@ -18,6 +18,8 @@ gem 'carrierwave'
 gem 'rmagick', '~> 2.15.2'
 gem 'fog', '~> 1.31.0'
 gem 'searchkick', '~> 0.8.7'
+gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
 
 group :production do
      gem 'pg'

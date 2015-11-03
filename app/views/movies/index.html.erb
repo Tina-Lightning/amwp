@@ -27,6 +27,10 @@
 </div>
 <% end %>
 
+<div class="center">
+   <%= will_paginate @movies, renderer: BootstrapPagination::Rails %>
+</div>
+
 <% if user_signed_in? %>
   <div>
     <h3>Add a new movie</h3>

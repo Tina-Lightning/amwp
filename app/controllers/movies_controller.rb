@@ -12,7 +12,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    @movies = Movie.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 1)
 
     respond_to do |format|
       format.html
