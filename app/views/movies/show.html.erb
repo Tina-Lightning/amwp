@@ -32,7 +32,7 @@
       </tbody>
     </table>
     <p>
-      <% if user_signed_in && current_user.admin? %>
+      <% if user_signed_in? %>
         <%= link_to 'Edit Movie', edit_movie_path(@movie) %> | 
         <%= link_to 'Delete Movie', @movie, method: :delete, confirm: "Are you sure you want to delete this movie?" %>
       <% end %>
