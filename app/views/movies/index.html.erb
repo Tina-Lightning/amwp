@@ -31,7 +31,7 @@
    <%= will_paginate @movies, renderer: BootstrapPagination::Rails %>
 </div>
 
-<% if current_user && current_user.admin? %>
+<% if user_signed_in? %>
   <div>
     <h3>Add a new movie</h3>
     <%= link_to 'New Movie', new_movie_path, class: 'btn btn-default' %>
