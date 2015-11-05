@@ -3,8 +3,10 @@
     <%= image_tag("AMWP-logo.png", class: "home-img", :alt => "AMWP logo") %>
     <div class="home-question">
     	<h2>Should I watch</h2>
-    	<%= text_field_tag :search, params[:search], class: "form-control home-search" %>
-    	<h2>with my parents?</h2>
-    	<%= submit_tag "Search", name: nil, class: "btn btn-default home-search-btn" %>
+    	<%= form_tag search_movies_path, method: :get, class: "", role: "search" do %>
+    		<%= text_field_tag :search, params[:search], class: "form-control home-search" %>
+    		<h2>with my parents?</h2>
+    		<%= submit_tag "Search", name: nil, class: "btn btn-default home-search-btn" %>
+        <% end %>	
     </div>
 </div>
