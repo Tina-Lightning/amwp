@@ -23,7 +23,10 @@ class MoviesController < ApplicationController
   # GET /movies/1
   # GET /movies/1.json
   def show
-    @movies = Movie.find(params[:id])
+    @movies = Movie.friendly.find(params[:id])
+    if request.path != movie_path(@movie)
+      redirect_to @movie, status: :moved_permanently
+    end
     @comments = @movie.comments
   end
 
@@ -98,7 +101,7 @@ class MoviesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_movie
-      @movie = Movie.find(params[:id])
+      @movie = Movie.friendly.find(params[:id])
     end
 
     def correct_user

@@ -20,6 +20,7 @@ gem 'fog', '~> 1.31.0'
 gem 'searchkick', '~> 0.8.7'
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
+gem 'friendly_id', '~> 5.1.0'
 
 group :production do
      gem 'pg'

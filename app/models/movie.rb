@@ -1,7 +1,14 @@
 class Movie < ActiveRecord::Base
 
 	searchkick
+
+	extend FriendlyId
+	friendly_id :title, use: [:slugged, :history]
 	
+	#def should_generate_new_friendly_id?
+	#	new_record?
+	#end
+
 	acts_as_votable
 	#has_attached_file :image, :styles => { :medium => "200x300#", :thumb => "100x100>" }
 	#validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
